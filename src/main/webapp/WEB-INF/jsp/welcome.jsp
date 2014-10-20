@@ -14,7 +14,6 @@
     <h2><fmt:message key="welcome"/></h2>
     <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
     <img src="${petsImage}"/>
-    <!-- Comment! -->
     <jsp:include page="fragments/footer.jsp"/>
 
 </div>
