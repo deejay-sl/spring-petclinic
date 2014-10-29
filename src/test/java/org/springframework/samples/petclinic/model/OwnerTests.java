@@ -37,8 +37,8 @@ public class OwnerTests {
         assertNull(owner.getPet("Fido"));
         assertNull(owner.getPet("fido"));
         owner.addPet(fido);
-        assertEquals(fido, owner.getPet("Fido"))
-        assertEquals(fido, owner.getPet("fidos"));
+        assertEquals(fido, owner.getPet("Fido"));
+        assertEquals(fido, owner.getPet("fido"));
     }
 
 }
