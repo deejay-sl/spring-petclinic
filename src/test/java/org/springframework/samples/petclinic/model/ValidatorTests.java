@@ -17,14 +17,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
- * 
- * @author Michael Isvy
- * Simple test to make sure that Bean Validation is working 
- * (useful when upgrading to a new version of Hibernate Validator/ Bean Validation)
  *
+ * @author Michael Isvy
+ * Simple test to make sure that Bean Validation is working
+ * (useful when upgrading to a new version of Hibernate Validator/ Bean Validation)
+ * This is a comment
  */
 public class ValidatorTests {
-	
+
 	private Validator createValidator() {
 	      LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
 	      localValidatorFactoryBean.afterPropertiesSet();
@@ -47,5 +47,5 @@ public class ValidatorTests {
         Assert.assertEquals(violation.getPropertyPath().toString(), "firstName");
         Assert.assertEquals(violation.getMessage(), "may not be empty");
     }
-	
+
 }
