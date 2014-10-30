@@ -36,7 +36,8 @@ then
 		fi
 
 		tar -xf apache-maven-3.2.3-bin.tar.gz
-		cp -R apache-maven-3.2.3 /usr/share
+		rm apache-maven-3.2.3-bin.tar.gz
+		mv apache-maven-3.2.3 /usr/share
 	fi
 
 	if ! grep --quiet "apache-maven" ~/.bashrc
@@ -48,7 +49,9 @@ then
 fi
 
 cd /vagrant
-mvn tomcat7:run
+
+mvn
+#mvn tomcat7:run
 
 echo "Provisioning Run Complete"
 date
