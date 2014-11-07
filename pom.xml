@@ -310,15 +310,7 @@
 			<artifactId>datatables-export-itext</artifactId>
 			<version>${dandelion.version}</version>
 		</dependency>
-
-		<!-- Dynatrace -->
-		<dependency>
-			<groupId>dynaTrace</groupId>
-			<artifactId>com.dynatrace.diagnostics.automation</artifactId>
-			<version>1.0</version>
-		</dependency>
-
-	</dependencies>
+  </dependencies>
 
 	<dependencyManagement>
 		<dependencies>
