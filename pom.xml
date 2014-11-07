@@ -400,6 +400,7 @@
 				<version>2.13</version>
 				<configuration>
 					<argLine>-agentpath:/home/cesadmin/dynatrace-6.0.0/agent/lib64/libdtagent.so=name=Build-PetClinic,server=ces-collector.cloudapp.net:9998</argLine>
+					<argLine>-Dbuild.number=${BUILD_ID} dynaTrace:dtAutomation:3.5:setTestInformation test</argLine>
 					<includes>
 						<include>**/*Tests.java</include>
 					</includes>
