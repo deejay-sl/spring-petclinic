@@ -313,12 +313,10 @@
 
 		<!-- Dynatrace -->
 		<dependency>
-		<groupId>dynaTrace</groupId>
-		<artifactId>com.dynatrace.diagnostics.automation</artifactId>
-		<name>com.dynatrace.diagnostics.automation</name>
-		<version>1.0</version>
-		<packaging>maven-plugin</packaging>
-	</dependency>
+			<groupId>dynaTrace</groupId>
+			<artifactId>com.dynatrace.diagnostics.automation</artifactId>
+			<version>1.0</version>
+		</dependency>
 
 	</dependencies>
 
