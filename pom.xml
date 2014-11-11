@@ -427,7 +427,7 @@
                         </configuration>
                         <phase>test</phase>
                         <goals>
-                            <goal>test</goal>
+                            <goal>startTest</goal>
                         </goals>
                     </execution>
                 </executions>
