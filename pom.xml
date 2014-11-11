@@ -425,7 +425,7 @@
                             <password>${dyna.password}</password>
                             <serverUrl>${dyna.host}</serverUrl>
                         </configuration>
-                        <phase>test</phase>
+                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>startTest</goal>
                         </goals>
