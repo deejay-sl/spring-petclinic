@@ -414,7 +414,6 @@
                     <execution>
                         <id>DT_StartTest</id>
                         <configuration>
-                            <category>performance</category>
                             <profileName>Dev-PetClinic</profileName>
                             <versionMajor>1</versionMajor>
                             <versionMinor>0</versionMinor>
@@ -425,10 +424,6 @@
                             <password>${dyna.password}</password>
                             <serverUrl>${dyna.host}</serverUrl>
                         </configuration>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>startTest</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
