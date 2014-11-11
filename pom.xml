@@ -406,6 +406,18 @@
 					</systemProperties>
 			  </configuration>
 			</plugin>
+            <plugin>
+                <groupId>dynaTrace</groupId>
+                <artifactId>dtAutomation</artifactId>
+                <version>5.6</version>
+                <configuration>
+                    <category>performance</category>
+                    <profileName>test</profileName>
+                    <username>${dyna.user}</username>
+                    <password>${dyna.password}</password>
+                    <serverUrl>${dyna.host}</serverUrl>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
