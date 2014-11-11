@@ -311,7 +311,7 @@
 			<version>${dandelion.version}</version>
 		</dependency>
 
-		<!-- Dynatrace config -->
+		<!-- Dynatrace configuration -->
 		<dependency>
 			<groupId>dynaTrace</groupId>
 			<artifactId>dtAutomation</artifactId>
