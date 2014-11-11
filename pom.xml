@@ -416,7 +416,7 @@
                     <versionMajor>1</versionMajor>
                     <versionMinor>0</versionMinor>
                     <versionRevision>1</versionRevision>
-                    <versionBuild>1</versionBuild>
+                    <versionBuild>${BUILD_ID}</versionBuild>
                     <versionMilestone>1</versionMilestone>
                     <username>${dyna.user}</username>
                     <password>${dyna.password}</password>
