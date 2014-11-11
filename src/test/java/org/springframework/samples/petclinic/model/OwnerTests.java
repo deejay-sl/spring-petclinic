@@ -15,11 +15,11 @@
  */
 package org.springframework.samples.petclinic.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * JUnit test for the {@link Owner} class.
@@ -38,7 +38,7 @@ public class OwnerTests {
         assertNull(owner.getPet("fido"));
         owner.addPet(fido);
         assertEquals(fido, owner.getPet("Fido"));
-        assertEquals(fido, owner.getPet("fido"));
+        assertEquals(fido, owner.getPet("fidos"));
     }
 
 }
