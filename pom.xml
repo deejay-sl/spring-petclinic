@@ -424,6 +424,10 @@
                             <password>${dyna.password}</password>
                             <serverUrl>${dyna.host}</serverUrl>
                         </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>startTest</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
