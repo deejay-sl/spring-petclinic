@@ -398,7 +398,12 @@
 					<includes>
 						<include>**/*Tests.java</include>
 					</includes>
-
+					<systemProperties>
+						<property>
+							<name>com.dynatrace.diagnostics.ci.testrunID</name>
+							<value>${dtTestrunID}</value>
+						</property>
+					</systemProperties>
 			  </configuration>
 			</plugin>
             <plugin>
@@ -421,6 +426,10 @@
                             <serverUrl>${dyna.host}</serverUrl>
                             <additionalProperties></additionalProperties>
                         </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>startTest</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
