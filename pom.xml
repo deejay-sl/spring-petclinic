@@ -413,6 +413,12 @@
                 <configuration>
                     <category>performance</category>
                     <profileName>test</profileName>
+                    <versionMajor>1</versionMajor>
+                    <versionMinor>0</versionMinor>
+                    <versionRevision>1</versionRevision>
+                    <versionBuild>1</versionBuild>
+                    <versionMilestone>1</versionMilestone>
+
                     <username>${dyna.user}</username>
                     <password>${dyna.password}</password>
                     <serverUrl>${dyna.host}</serverUrl>
