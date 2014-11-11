@@ -410,18 +410,27 @@
                 <groupId>dynaTrace</groupId>
                 <artifactId>dtAutomation</artifactId>
                 <version>5.6</version>
-                <configuration>
-                    <category>performance</category>
-                    <profileName>test</profileName>
-                    <versionMajor>1</versionMajor>
-                    <versionMinor>0</versionMinor>
-                    <versionRevision>1</versionRevision>
-                    <versionBuild>${BUILD_ID}</versionBuild>
-                    <versionMilestone>1</versionMilestone>
-                    <username>${dyna.user}</username>
-                    <password>${dyna.password}</password>
-                    <serverUrl>${dyna.host}</serverUrl>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>DT_StartTest</id>
+                        <configuration>
+                            <category>performance</category>
+                            <profileName>Dev-PetClinic</profileName>
+                            <versionMajor>1</versionMajor>
+                            <versionMinor>0</versionMinor>
+                            <versionRevision>1</versionRevision>
+                            <versionBuild>${BUILD_ID}</versionBuild>
+                            <versionMilestone>1</versionMilestone>
+                            <username>${dyna.user}</username>
+                            <password>${dyna.password}</password>
+                            <serverUrl>${dyna.host}</serverUrl>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>startTest</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
