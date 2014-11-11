@@ -398,12 +398,7 @@
 					<includes>
 						<include>**/*Tests.java</include>
 					</includes>
-					<systemProperties>
-						<property>
-							<name>com.dynatrace.diagnostics.ci.testrunID</name>
-							<value>${BUILD_ID}</value>
-						</property>
-					</systemProperties>
+
 			  </configuration>
 			</plugin>
             <plugin>
