@@ -216,12 +216,22 @@ https://www.vagrantup.com/
 
 **Your computer may require a restart at this point.**
 
+Acquiring the Vagrant box we'll be using for the demo might take some time, so it's best to start the download as soon as possible:
+
+	  vagrant box add ubuntu/trusty64
+	  
 ### Getting started
+
+While this is downloading, we can move on:
 
 	  git clone https://github.com/SLS-ALL/spring-petclinic.git
 	  cd spring-petclinic
 
 At this point, you can either provision the VM with the provided 'provision.sh' shell script, or with Chef Solo.
+
+** Note: On Windows machines, _provision.sh_ may have problems running due to _^M_ line endings. _dos2unix_ may be used to convert the file: **
+
+	  dos2unix provision.sh
 
 ### Demo Run #1: provision.sh
 
