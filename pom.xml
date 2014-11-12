@@ -432,7 +432,7 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>DT_StartTest</id>
+                        <id>DT_StartTestPerformance</id>
                         <configuration>
                             <profileName>Dev-PetClinic</profileName>
                             <category>performance</category>
