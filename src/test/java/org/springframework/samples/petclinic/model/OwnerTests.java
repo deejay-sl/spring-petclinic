@@ -31,12 +31,14 @@ public class OwnerTests {
     @Test
     @Transactional
     public void testHasPet() {
+        // Test has pet.
         Owner owner = new Owner();
         Pet fido = new Pet();
         fido.setName("Fido");
         assertNull(owner.getPet("Fido"));
         assertNull(owner.getPet("fido"));
         owner.addPet(fido);
+        // Test whether pet is Fido or fido
         assertEquals(fido, owner.getPet("Fido"));
         assertEquals(fido, owner.getPet("fido"));
     }
