@@ -233,6 +233,8 @@ At this point, you can either provision the VM with the provided 'provision.sh' 
 
 	  dos2unix provision.sh
 
+** Note: you will need to have full administrative privileges on the machine. **
+
 ### Demo Run #1: provision.sh
 
 	  vagrant up --no-provision
@@ -243,7 +245,6 @@ At this point, you can either provision the VM with the provided 'provision.sh' 
 
 ### Demo Run #2: Chef Solo
 
-	  mkdir cookbooks
 	  cd cookbooks
 	  git clone https://github.com/agileorbit-cookbooks/java.git
 	  git clone https://github.com/opscode-cookbooks/maven.git
