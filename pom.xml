@@ -431,6 +431,26 @@
                             <goal>startTest</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>DT_StartTest</id>
+                        <configuration>
+                            <profileName>Dev-PetClinic</profileName>
+                            <category>performance</category>
+                            <versionMajor>1</versionMajor>
+                            <versionMinor>0</versionMinor>
+                            <versionRevision>1</versionRevision>
+                            <versionBuild>${BUILD_ID}</versionBuild>
+                            <versionMilestone>1</versionMilestone>
+                            <username>${dyna.user}</username>
+                            <password>${dyna.password}</password>
+                            <serverUrl>${dyna.host}</serverUrl>
+                            <additionalProperties></additionalProperties>
+                        </configuration>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>startTest</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
 			<plugin>
