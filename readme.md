@@ -195,6 +195,62 @@ Here is a list of them:
   </tr>    
 </table>
 
+## SLS Demo
+
+The following will need to be installed in order to run the demos. This process will take around 20 minutes to complete.
+
+** Note: Vagrant should be installed _after_ VirtualBox **
+
+#### VirtualBox
+https://www.virtualbox.org/
+
+#### git 
+http://git-scm.com/
+
+**On Windows**, during Git installation, an option dialog will be presented to allow you to decide how Git integrates with the Windows Command Prompt. Choose the second:
+
+** Run Git and included Unix tools from the Windows Command Prompt ** 
+
+#### Vagrant
+https://www.vagrantup.com/
+
+**Your computer may require a restart at this point.**
+
+Acquiring the Vagrant box we'll be using for the demo might take some time, so it's best to start the download as soon as possible:
+
+	  vagrant box add ubuntu/trusty64
+	  
+### Getting started
+
+While this is downloading, we can move on:
+
+	  git clone https://github.com/SLS-ALL/spring-petclinic.git
+	  cd spring-petclinic
+
+At this point, you can either provision the VM with the provided 'provision.sh' shell script, or with Chef Solo.
+
+** Note: On Windows machines, _provision.sh_ may have problems running due to _^M_ line endings. _dos2unix_ may be used to convert the file: **
+
+	  dos2unix provision.sh
+
+### Demo Run #1: provision.sh
+
+	  vagrant up --no-provision
+	  vagrant ssh
+	  sudo -i
+	  cd /vagrant
+	  ./provision.sh
+
+### Demo Run #2: Chef Solo
+
+	  mkdir cookbooks
+	  cd cookbooks
+	  git clone https://github.com/agileorbit-cookbooks/java.git
+	  git clone https://github.com/opscode-cookbooks/maven.git
+	  git clone https://github.com/burtlo/ark.git
+	  git clone https://github.com/opscode-cookbooks/build-essential.git
+	  cd ..
+	  vagrant up
 
 
 
