@@ -197,16 +197,24 @@ Here is a list of them:
 
 ## SLS Demo
 
-The following will need to be installed in order to run the demos: 
+The following will need to be installed in order to run the demos. This process will take around 20 minutes to complete.
 
-#### git 
-http://git-scm.com/
+** Note: Vagrant should be installed _after_ VirtualBox **
 
 #### VirtualBox
 https://www.virtualbox.org/
 
+#### git 
+http://git-scm.com/
+
+**On Windows**, during Git installation, an option dialog will be presented to allow you to decide how Git integrates with the Windows Command Prompt. Choose the second:
+
+** Run Git and included Unix tools from the Windows Command Prompt ** 
+
 #### Vagrant
 https://www.vagrantup.com/
+
+**Your computer may require a restart at this point.**
 
 ### Getting started
 
