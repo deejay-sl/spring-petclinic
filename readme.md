@@ -197,31 +197,35 @@ Here is a list of them:
 
 ## SLS Demo
 
+### For Windows
+
+For any environment, you will need to be installed: git, VirtualBox, and Vagrant. For Windows, specifically, Cygwin is additionally recommended for the command line execution that is required in this demo. 
+
 Getting started with the SLS demo:
 
-  git clone https://github.com/SLS-ALL/spring-petclinic.git
-  cd spring-petclinic
+	  git clone https://github.com/SLS-ALL/spring-petclinic.git
+	  cd spring-petclinic
 
 At this point, you can either provision the VM with the provided 'provision.sh' shell script, or with Chef Solo.
 
 ### provision.sh
 
-  vagrant up --no-provision
-  vagrant ssh
-  sudo -i
-  cd /vagrant
-  ./provision.sh
+	  vagrant up --no-provision
+	  vagrant ssh
+	  sudo -i
+	  cd /vagrant
+	  ./provision.sh
 
 ### Chef Solo
 
-  mkdir cookbooks
-  cd cookbooks
-  git clone https://github.com/agileorbit-cookbooks/java.git
-  git clone https://github.com/opscode-cookbooks/maven.git
-  git clone https://github.com/burtlo/ark.git
-  git clone https://github.com/opscode-cookbooks/build-essential.git
-  cd ..
-  vagrant up
+	  mkdir cookbooks
+	  cd cookbooks
+	  git clone https://github.com/agileorbit-cookbooks/java.git
+	  git clone https://github.com/opscode-cookbooks/maven.git
+	  git clone https://github.com/burtlo/ark.git
+	  git clone https://github.com/opscode-cookbooks/build-essential.git
+	  cd ..
+	  vagrant up
 
 
 
