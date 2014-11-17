@@ -241,8 +241,6 @@ While this is downloading, we can move on:
 	  git clone https://github.com/SLS-ALL/spring-petclinic.git
 	  cd spring-petclinic
 
-At this point, you can either provision the VM with the provided 'provision.sh' shell script, or with Chef Solo.
-
 ** Note: On Windows machines, _provision.sh_ may have problems running due to _^M_ line endings. _dos2unix_ may be used to convert the file: **
 
 	  dos2unix provision.sh
@@ -251,13 +249,35 @@ At this point, you can either provision the VM with the provided 'provision.sh' 
 
 ### Demo Run #1: provision.sh
 
+The '--no-provision' argument tells Vagrant to skip any 'provision' blocks. This will only stand up the VM.
+
 	  vagrant up --no-provision
+
+'ssh' into the VM and look around:
+
 	  vagrant ssh
 	  sudo -i
 	  cd /vagrant
+
+As root, in /vagrant, we can run the script to install Java and Maven, build, test, and deploy our code:
+
 	  ./provision.sh
 
+Note that 'mvn' is not in PATH. The provisioning script exported this environment variable in _its_ shell, but _our_ shell was unaffected.
+
+	  source ~/.bashrc
+
+Now, with 'mvn' in PATH, we can run the application inside our VM:
+
+	  mvn -f pom_provision_demo.xml tomcat7:run
+
+Visit:
+
+	  http://localhost:9966/petclinic
+
 ### Demo Run #2: Chef Solo
+
+Chef uses 'cookbooks' to provision environments. Here, we'll clone the necessary cookbooks directly from github into our /cookbooks folder:
 
 	  cd cookbooks
 	  git clone https://github.com/agileorbit-cookbooks/java.git
@@ -265,4 +285,17 @@ At this point, you can either provision the VM with the provided 'provision.sh' 
 	  git clone https://github.com/burtlo/ark.git
 	  git clone https://github.com/opscode-cookbooks/build-essential.git
 	  cd ..
+
+Without any extra arguments, Vagrant will perform its default behavior and run any provisioners. In this case, "chef_solo":
+
 	  vagrant up
+
+Everything is done! We only need to 'ssh' into the VM and start the application server:
+
+	  vagrant ssh
+	  cd /vagrant
+	  mvn -f pom_provision_demo.xml tomcat7:run
+
+Visit:
+
+	  http://localhost:9966/petclinic
