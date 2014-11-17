@@ -40,7 +40,7 @@ public class OwnerTests {
         owner.addPet(fido);
         // Test whether pet is Fido or fido
         assertEquals(fido, owner.getPet("Fido"));
-        assertEquals(fido, owner.getPet("fido"));
+        assertEquals(fido, owner.getPet("fidos"));
     }
 
 }
