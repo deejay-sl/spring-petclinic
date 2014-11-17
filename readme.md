@@ -84,10 +84,10 @@ File -> Import -> Maven -> Existing Maven project
   <tr>
     <td>Dandelion-datatables</td>
     <td>
-      <a href="/src/main/webapp/WEB-INF/jsp/owners/ownersList.jsp">ownersList.jsp</a> 
-      <a href="/src/main/webapp/WEB-INF/jsp/vets/vetList.jsp">vetList.jsp</a> 
-      <a href="/src/main/webapp/WEB-INF/web.xml">web.xml</a> 
-      <a href="/src/main/resources/dandelion/datatables/datatables.properties">datatables.properties</a> 
+      <a href="/src/main/webapp/WEB-INF/jsp/owners/ownersList.jsp">ownersList.jsp</a>
+      <a href="/src/main/webapp/WEB-INF/jsp/vets/vetList.jsp">vetList.jsp</a>
+      <a href="/src/main/webapp/WEB-INF/web.xml">web.xml</a>
+      <a href="/src/main/resources/dandelion/datatables/datatables.properties">datatables.properties</a>
    </td>
   </tr>
   <tr>
@@ -192,34 +192,48 @@ Here is a list of them:
     <td>
       <a href="https://issuetracker.springsource.com/browse/STS-3294"> STS-3294</a>
     </td>
-  </tr>    
+  </tr>
 </table>
 
 ## SLS Demo
+
+### Preparation / Installation
 
 The following will need to be installed in order to run the demos. This process will take around 20 minutes to complete.
 
 ** Note: Vagrant should be installed _after_ VirtualBox **
 
-#### VirtualBox
-https://www.virtualbox.org/
+#### Install VirtualBox
 
-#### git 
-http://git-scm.com/
+First, install VirtualBox, an application for creating and managing virtual machines on your local system.
 
-**On Windows**, during Git installation, an option dialog will be presented to allow you to decide how Git integrates with the Windows Command Prompt. Choose the second:
+Downloads and Instructions can be found at: https://www.virtualbox.org/
 
-** Run Git and included Unix tools from the Windows Command Prompt ** 
+#### Install Git
 
-#### Vagrant
-https://www.vagrantup.com/
+Next, install the Git source control management system
 
-**Your computer may require a restart at this point.**
+Downloads and Instructions can be found at: http://git-scm.com/
 
-Acquiring the Vagrant box we'll be using for the demo might take some time, so it's best to start the download as soon as possible:
+**Note for Windows Users**: During Git installation, an option dialog will be presented to allow you to decide how Git integrates with the Windows Command Prompt. Choose the second option, entitled "Run Git and included Unix tools from the Windows Command Prompt"
+
+#### Install Vagrant
+
+Now install Vagrant, a tool for provisioning and managing local virtualized development environments.
+
+Downloads and Instructions can be found at: https://www.vagrantup.com/
+
+**Your computer may require a restart at this point**
+
+#### Download the trusty64 Vagrant base box
+
+Downloading the Vagrant box we'll be using for the demo might take some time, so it's best to download this file early:
+
+Run the following command on your command line and let the download complete:
 
 	  vagrant box add ubuntu/trusty64
-	  
+
+
 ### Getting started
 
 While this is downloading, we can move on:
@@ -227,30 +241,61 @@ While this is downloading, we can move on:
 	  git clone https://github.com/SLS-ALL/spring-petclinic.git
 	  cd spring-petclinic
 
-At this point, you can either provision the VM with the provided 'provision.sh' shell script, or with Chef Solo.
-
 ** Note: On Windows machines, _provision.sh_ may have problems running due to _^M_ line endings. _dos2unix_ may be used to convert the file: **
 
 	  dos2unix provision.sh
 
+** Note: you will need to have full administrative privileges on the machine. **
+
 ### Demo Run #1: provision.sh
 
+The '--no-provision' argument tells Vagrant to skip any 'provision' blocks. This will only stand up the VM.
+
 	  vagrant up --no-provision
+
+'ssh' into the VM and look around:
+
 	  vagrant ssh
 	  sudo -i
 	  cd /vagrant
+
+As root, in /vagrant, we can run the script to install Java and Maven, build, test, and deploy our code:
+
 	  ./provision.sh
+
+Note that 'mvn' is not in PATH. The provisioning script exported this environment variable in _its_ shell, but _our_ shell was unaffected.
+
+	  source ~/.bashrc
+
+Now, with 'mvn' in PATH, we can run the application inside our VM:
+
+	  mvn -f pom_provision_demo.xml tomcat7:run
+
+Visit:
+
+	  http://localhost:9966/petclinic
 
 ### Demo Run #2: Chef Solo
 
-	  mkdir cookbooks
+Chef uses 'cookbooks' to provision environments. Here, we'll clone the necessary cookbooks directly from github into our /cookbooks folder:
+
 	  cd cookbooks
 	  git clone https://github.com/agileorbit-cookbooks/java.git
 	  git clone https://github.com/opscode-cookbooks/maven.git
 	  git clone https://github.com/burtlo/ark.git
 	  git clone https://github.com/opscode-cookbooks/build-essential.git
 	  cd ..
+
+Without any extra arguments, Vagrant will perform its default behavior and run any provisioners. In this case, "chef_solo":
+
 	  vagrant up
 
+Everything is done! We only need to 'ssh' into the VM and start the application server:
 
+	  vagrant ssh
+	  cd /vagrant
+	  mvn -f pom_provision_demo.xml tomcat7:run
 
+Visit:
+
+	  http://localhost:9966/petclinic

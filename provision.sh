@@ -50,8 +50,10 @@ fi
 
 cd /vagrant
 
-mvn -f pom_provision_demo.xml 
-mvn -f pom_provision_demo.xml tomcat7:run
+mvn -f pom_provision_demo.xml clean
+mvn -f pom_provision_demo.xml compile
+mvn -f pom_provision_demo.xml test
+mvn -f pom_provision_demo.xml package
 
 echo "Provisioning Run Complete"
 date
