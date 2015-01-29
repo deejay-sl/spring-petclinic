@@ -394,7 +394,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.13</version>
 				<configuration>
-					<argLine>-agentpath:/home/cesadmin/dynatrace-6.1.0/agent/lib64/libdtagent.so=name=Build-PetClinic,server=ces-collector.cloudapp.net:9998</argLine>
+					<argLine>-agentpath:/home/cesadmin/dynatrace-6.1.0/agent/lib64/libdtagent.so=name=Build-PetClinic,server=ces-collector.cloudapp.net:9998,optionTestRunIdJava=${dtTestrunID}</argLine>
 					<includes>
 						<include>**/*Tests.java</include>
 					</includes>
