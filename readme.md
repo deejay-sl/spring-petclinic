@@ -306,14 +306,7 @@ You can see how, with a VM, we can execute code in a standard environment, and w
 
 Shell scripting is a great way to script provisioning because the shell has so much control over the environment. The downside to this is that shell syntax is, itself, platform dependent, and sometimes what you need to do isn't very straightforward. Chef is a tool that adds a level of indirection on top of shell syntax, so that one basic command, or Chef "resource", can work in every environment. Chef's resources also provide shortcuts to common provisioning tasks such as configuration file templating, installing packages, manipulating routing tables and firewalls, and many more.
 
-Chef uses "cookbooks" and "recipes" to provision environemnts. Here, we'll clone the necessary cookbooks (to exactly match the shell scripting demo) directly from github into our /cookbooks folder:
-
-	  cd cookbooks
-	  git clone https://github.com/agileorbit-cookbooks/java.git
-	  git clone https://github.com/opscode-cookbooks/maven.git
-	  git clone https://github.com/burtlo/ark.git
-	  git clone https://github.com/opscode-cookbooks/build-essential.git
-	  cd ..
+Chef uses "cookbooks" and "recipes" to provision environemnts. We've included the necessary cookbooks in our project.
 
 Without any extra arguments, Vagrant will perform its default behavior and run any provisioners. In this case, the "chef_solo" provisioner in our Vagrantfile references each of the cookbooks cloned above, and so `vagrant up` will run and install each:
 
