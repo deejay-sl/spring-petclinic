@@ -7,7 +7,6 @@ bash "build-source" do
 		mvn -f pom_provision_demo.xml test
 		mvn -f pom_provision_demo.xml package
 	EOH
-	user "root"
 	action :run
 
 end
