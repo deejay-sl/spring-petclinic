@@ -7,7 +7,15 @@ bash "build-source" do
 		mvn -f pom_provision_demo.xml test
 		mvn -f pom_provision_demo.xml package
 	EOH
+	user "root"
 	action :run
 
 end
 
+=begin
+template "#{node[:base_folder]}" do
+	source "logback.xml.erb"
+	user "root"
+	group "root"	
+end
+=end

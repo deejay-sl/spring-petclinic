@@ -258,43 +258,49 @@ While the Vagrant box is downloading, we can move on:
 
 ### Demo Run #1: Shell script
 
-The '--no-provision' argument tells Vagrant to skip any 'provision' blocks in the Vagrantfile. 
+First, let's get the VM running and see what's involved:
 
-This will only stand up the VM:
+	vagrant up --no-provision
+	
+The `--no-provision` flag tells Vagrant to ignore any `provisioner` blocks in Vagrantfile.
 
-	  vagrant up --no-provision
+Notice what is output while the VM is being started and configured. Briefly:
 
-`vagrant ssh` into the VM, switch to root user, and look around:
+* Importing the box
+* Forwarding ports
+	* 9966
+	* 22
+* Mounting shared folders
+	* /vagrant
+	* /tmp/vagrant-chef-3/chef-solo-1/cookbooks
 
-	  vagrant ssh
-	  sudo -i
-	  cd /vagrant
+Next, let's provision the box with the `shell` provisioner, essentially `provision.sh`:
 
-`/vagrant` is a default shared folder that Vagrant provides so we can access the project root folder (the root folder with the Vagrantfile) on the host machine from within the VM.
+	vagrant provision --provision-with shell
 
-As root, in /vagrant, we can run the script to install Java and Maven, build, test, and deploy our code:
+Now, `vagrant ssh` into the VM, switch to root user, and look around:
 
-	  ./provision.sh
+	vagrant ssh
+	sudo -i
+	cd /vagrant
 
-Note that 'mvn' is not in PATH. The provisioning script exported this environment variable in _its_ shell, but _our_ shell was unaffected.
+`/vagrant` is a default shared folder that Vagrant provides so we can access the project root folder (the root folder with the Vagrantfile) on the host machine from within the VM. This is what allows us to develop code on our host machine while executing it within the VM.
 
-	  source ~/.bashrc
+The VM is provisioned. We can now run the application inside our VM:
 
-Now, with 'mvn' in PATH, we can run the application inside our VM:
-
-	  mvn -f pom_provision_demo.xml tomcat7:run
+	mvn -f pom_provision_demo.xml tomcat7:run
 
 To test, visit:
 
-	  http://localhost:9966/petclinic
+	http://localhost:9966/petclinic/
 
 You can see how, with a VM, we can execute code in a standard environment, and with the use of shared folders, write code on our host platforms, whether that's Windows, Linux, or Mac. This helps to alleviate the pain point of having different development environments within a development team.
 
 ### Demo Run #2: Chef Solo
 
-Shell scripting is a great way to script provisioning because the shell has so much control over the environment. The downside to this is that shell syntax is, itself, platform dependent, and sometimes what you need to do isn't very straightforward. Chef is a tool that adds a level of indirection on top of shell syntax, so that one basic command, or Chef "resource" can work in every environment. Chef's resources also provide shortcuts to common provisioning tasks such as configuration file templating, installing packages, manipulating routing tables and firewalls, and many more.
+Shell scripting is a great way to script provisioning because the shell has so much control over the environment. The downside to this is that shell syntax is, itself, platform dependent, and sometimes what you need to do isn't very straightforward. Chef is a tool that adds a level of indirection on top of shell syntax, so that one basic command, or Chef "resource", can work in every environment. Chef's resources also provide shortcuts to common provisioning tasks such as configuration file templating, installing packages, manipulating routing tables and firewalls, and many more.
 
-Chef uses "cookbooks" and "recipes" to provision environemnts. Here, we'll clone the necessary cookbooks directly from github into our /cookbooks folder:
+Chef uses "cookbooks" and "recipes" to provision environemnts. Here, we'll clone the necessary cookbooks (to exactly match the shell scripting demo) directly from github into our /cookbooks folder:
 
 	  cd cookbooks
 	  git clone https://github.com/agileorbit-cookbooks/java.git
@@ -305,7 +311,7 @@ Chef uses "cookbooks" and "recipes" to provision environemnts. Here, we'll clone
 
 Without any extra arguments, Vagrant will perform its default behavior and run any provisioners. In this case, the "chef_solo" provisioner in our Vagrantfile references each of the cookbooks cloned above, and so `vagrant up` will run and install each:
 
-	  vagrant up
+	  vagrant up --provision-with chef_solo
 
 Everything is done! We only need to 'ssh' into the VM and start the application server:
 
@@ -317,4 +323,25 @@ Everything is done! We only need to 'ssh' into the VM and start the application 
 To test, visit:
 
 	  http://localhost:9966/petclinic
-	  
+
+#### Demo Run #2: Multiple Environments
+
+In order to transpose the chef-solo provisioning we have for our development environment to a test or production environment, we need to do two things:
+
+1. A file to set environment variables (solo.rb)
+2. A script to copy everything to the remote server (deploy.sh)
+3. A script to invoke `chef-solo` with the appropriate parameters (install.sh)
+
+An example deploy.sh:
+
+	ssh -t -A -l $your_username -o 'StrictHostKeyChecking no' $server_hostname '
+		sudo rm -rf /var/chef-solo &&
+		sudo mkdir /var/chef-solo &&
+		sudo mv everything.tar /var/chef-solo &&
+		cd /var/chef-solo &&
+		sudo tar -xjf everything.tar &&
+		sudo bash install.sh'
+
+An example install.sh:
+
+	/usr/bin/chef-solo -c solo.rb -j solo.json -E test

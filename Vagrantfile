@@ -17,27 +17,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # config.vm.synced_folder "../data", "/vagrant_data"
 
+  config.vm.provision "shell",
+      inline: "/vagrant/./provision.sh"
+
   config.vm.provision "chef_solo" do |chef|
      
      chef.add_recipe "java"
      chef.add_recipe "maven"
      chef.add_recipe "petclinic"
      
-     chef.json = { 
-      "base_folder" => "/vagrant",
-      "java" => {
-        "install_flavor" => "openjdk",
-        "jdk_version" => "7",
-        "java_home" => "/usr/lib/jvm/java-7-openjdk-amd64",
-        "oracle" => {
-          "accept_oracle_download_terms" => true
-        }
-      },
-      "maven" => {
-        "version" => "3",
-        "install_java" => false
-      }
-     }
+     chef.json.merge!(JSON.parse(File.read("solo.json")))
   end
 
 end

@@ -440,7 +440,7 @@
 					<port>9966</port>
 					<path>/petclinic</path>
 				</configuration>
-			</plugin>
+			</plugin>			
 		</plugins>
 	</build>
 
