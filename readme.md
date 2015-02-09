@@ -229,6 +229,18 @@ Downloads and instructions can be found at: https://www.vagrantup.com/
 
 ** Note: you will need to have full administrative privileges on the host machine. **
 
+#### Get the source code
+
+While the Vagrant box is downloading, we can move on:
+
+	  git clone https://github.com/SLS-ALL/spring-petclinic.git
+	  cd spring-petclinic
+	  
+#### Create a folder for provisioning resources
+
+	/spring-petclinic/usbstick
+
+** Note: It is important that this folder is exactly as shown. The provisioners we will use will reference it. **	  
 #### Get a Vagrant "box"
 
 **Note: Downloading the Vagrant box might take some time, so it's best to download this file early.**
@@ -245,13 +257,6 @@ For remote sourcing, as from the VirtualBox server, `vagrant box add` works like
 
 		vagrant box add ubuntu/trusty64
 		
-#### Get the source code
-
-While the Vagrant box is downloading, we can move on:
-
-	  git clone https://github.com/SLS-ALL/spring-petclinic.git
-	  cd spring-petclinic
-
 ** Note: On Windows machines, _provision.sh_ may have problems running due to _^M_ line endings. _dos2unix_ may be used to convert the file: **
 
 	  dos2unix provision.sh
