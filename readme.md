@@ -236,9 +236,7 @@ While the Vagrant box is downloading, we can move on:
 	  git clone https://github.com/SLS-ALL/spring-petclinic.git
 	  cd spring-petclinic
 	  
-#### Create a folder for provisioning resources
-
-	/spring-petclinic/usbstick
+#### Copy resources from a USB stick (provided at demo) into /spring-petclinic/usbstick
 
 ** Note: It is important that this folder is exactly as shown. The provisioners we will use will reference it. **	  
 #### Get a Vagrant "box"
