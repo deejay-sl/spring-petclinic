@@ -27,25 +27,25 @@ which mvn --version
 if [ ! $? -eq 0 ]
 then
 
-	if [ ! -d /usr/share/apache-maven-3.2.3 ]
+	if [ ! -d /usr/share/apache-maven-3.2.5 ]
 	then
 
-		if [ ! -f apache-maven-3.2.3-bin.tar.gz ]
+		if [ ! -f apache-maven-3.2.5-bin.tar.gz ]
 		then
-			wget http://www.trieuvan.com/apache/maven/maven-3/3.2.3/binaries/apache-maven-3.2.3-bin.tar.gz
+			wget http://www.trieuvan.com/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
 		fi
 
-		tar -xf apache-maven-3.2.3-bin.tar.gz
-		rm apache-maven-3.2.3-bin.tar.gz
-		mv apache-maven-3.2.3 /usr/share
+		tar -xf apache-maven-3.2.5-bin.tar.gz
+		rm apache-maven-3.2.5-bin.tar.gz
+		mv apache-maven-3.2.5 /usr/share
 	fi
 
 	if ! grep --quiet "apache-maven" ~/.bashrc
 	then		
-		echo "export PATH=$PATH:/usr/share/apache-maven-3.2.3/bin" >> ~/.bashrc
+		echo "export PATH=$PATH:/usr/share/apache-maven-3.2.5/bin" >> ~/.bashrc
 	fi
 
-	export PATH=$PATH:/usr/share/apache-maven-3.2.3/bin
+	export PATH=$PATH:/usr/share/apache-maven-3.2.5/bin
 fi
 
 cd /vagrant

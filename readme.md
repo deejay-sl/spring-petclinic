@@ -195,48 +195,59 @@ Here is a list of them:
   </tr>
 </table>
 
-## SLS Demo
+## SLS "Spring PetClinic" Vagrant Demo
 
 ### Preparation / Installation
 
-The following will need to be installed in order to run the demos. This process will take around 20 minutes to complete.
+VirtualBox, Git, and Vagrant will each need to be installed in order to run this demo (and any demo we have involving Vagrant). The installation process will take around 20 minutes to complete.
 
 ** Note: Vagrant should be installed _after_ VirtualBox **
 
-#### Install VirtualBox
+#### 1. VirtualBox
 
-First, install VirtualBox, an application for creating and managing virtual machines on your local system.
+VirtualBox assists in creating and managing virtual machines on your local system.
 
-Downloads and Instructions can be found at: https://www.virtualbox.org/
+Downloads and instructions can be found at: https://www.virtualbox.org/
 
-#### Install Git
+#### 2. Git
 
-Next, install the Git source control management system
+Git is a source control management system.
 
-Downloads and Instructions can be found at: http://git-scm.com/
+Downloads and instructions can be found at: http://git-scm.com/
 
 **Note for Windows Users**: During Git installation, an option dialog will be presented to allow you to decide how Git integrates with the Windows Command Prompt. Choose the second option, entitled "Run Git and included Unix tools from the Windows Command Prompt"
 
-#### Install Vagrant
+#### 3. Vagrant
 
-Now install Vagrant, a tool for provisioning and managing local virtualized development environments.
+Vagrant is a tool for provisioning and managing local virtualized development environments. Vagrant works with VirtualBox directly, and so VirtualBox should already be installed before installing Vagrant.
 
-Downloads and Instructions can be found at: https://www.vagrantup.com/
+Downloads and instructions can be found at: https://www.vagrantup.com/
 
 **Your computer may require a restart at this point**
 
-#### Download the trusty64 Vagrant base box
-
-Downloading the Vagrant box we'll be using for the demo might take some time, so it's best to download this file early:
-
-Run the following command on your command line and let the download complete:
-
-	  vagrant box add ubuntu/trusty64
-
-
 ### Getting started
 
-While this is downloading, we can move on:
+** Note: you will need to have full administrative privileges on the host machine. **
+
+#### Get a Vagrant "box"
+
+**Note: Downloading the Vagrant box might take some time, so it's best to download this file early.**
+
+Before you can run a virtual machine on your computer, you will need an image of that virtual machine. A VM image that has been configured to work with Vagrant is called a vagrant "box". There isn't much difference between a vanilla VM image and the "Vagrantized" version of it other than the installation of extra tools that allow Vagrant to communicate with it through VirtualBox. For most demos, we will use an Ubuntu 14.04 (Trusty Tahr) box. This is available either on a USB stick or CD at one of our live demos, or it can be downloaded directly from a VirtualBox server. 
+
+From a local source (USB stick or CD), a Vagrant box can be added to your local library of boxes with `vagrant box add`:
+
+		vagrant box add /path/to/sls-demo.box --name sls-demo
+
+Note that whatever 'name' is given for the box in your library, that is the name that is used in a Vagrantfile to spin up an instance of that box.
+
+For remote sourcing, as from the VirtualBox server, `vagrant box add` works like this:
+
+		vagrant box add ubuntu/trusty64
+		
+#### Get the source code
+
+While the Vagrant box is downloading, we can move on:
 
 	  git clone https://github.com/SLS-ALL/spring-petclinic.git
 	  cd spring-petclinic
@@ -245,19 +256,21 @@ While this is downloading, we can move on:
 
 	  dos2unix provision.sh
 
-** Note: you will need to have full administrative privileges on the machine. **
+### Demo Run #1: Shell script
 
-### Demo Run #1: provision.sh
+The '--no-provision' argument tells Vagrant to skip any 'provision' blocks in the Vagrantfile. 
 
-The '--no-provision' argument tells Vagrant to skip any 'provision' blocks. This will only stand up the VM.
+This will only stand up the VM:
 
 	  vagrant up --no-provision
 
-'ssh' into the VM and look around:
+`vagrant ssh` into the VM, switch to root user, and look around:
 
 	  vagrant ssh
 	  sudo -i
 	  cd /vagrant
+
+`/vagrant` is a default shared folder that Vagrant provides so we can access the project root folder (the root folder with the Vagrantfile) on the host machine from within the VM.
 
 As root, in /vagrant, we can run the script to install Java and Maven, build, test, and deploy our code:
 
@@ -271,13 +284,17 @@ Now, with 'mvn' in PATH, we can run the application inside our VM:
 
 	  mvn -f pom_provision_demo.xml tomcat7:run
 
-Visit:
+To test, visit:
 
 	  http://localhost:9966/petclinic
 
+You can see how, with a VM, we can execute code in a standard environment, and with the use of shared folders, write code on our host platforms, whether that's Windows, Linux, or Mac. This helps to alleviate the pain point of having different development environments within a development team.
+
 ### Demo Run #2: Chef Solo
 
-Chef uses 'cookbooks' to provision environments. Here, we'll clone the necessary cookbooks directly from github into our /cookbooks folder:
+Shell scripting is a great way to script provisioning because the shell has so much control over the environment. The downside to this is that shell syntax is, itself, platform dependent, and sometimes what you need to do isn't very straightforward. Chef is a tool that adds a level of indirection on top of shell syntax, so that one basic command, or Chef "resource" can work in every environment. Chef's resources also provide shortcuts to common provisioning tasks such as configuration file templating, installing packages, manipulating routing tables and firewalls, and many more.
+
+Chef uses "cookbooks" and "recipes" to provision environemnts. Here, we'll clone the necessary cookbooks directly from github into our /cookbooks folder:
 
 	  cd cookbooks
 	  git clone https://github.com/agileorbit-cookbooks/java.git
@@ -286,16 +303,18 @@ Chef uses 'cookbooks' to provision environments. Here, we'll clone the necessary
 	  git clone https://github.com/opscode-cookbooks/build-essential.git
 	  cd ..
 
-Without any extra arguments, Vagrant will perform its default behavior and run any provisioners. In this case, "chef_solo":
+Without any extra arguments, Vagrant will perform its default behavior and run any provisioners. In this case, the "chef_solo" provisioner in our Vagrantfile references each of the cookbooks cloned above, and so `vagrant up` will run and install each:
 
 	  vagrant up
 
 Everything is done! We only need to 'ssh' into the VM and start the application server:
 
 	  vagrant ssh
+	  sudo -i
 	  cd /vagrant
 	  mvn -f pom_provision_demo.xml tomcat7:run
 
-Visit:
+To test, visit:
 
 	  http://localhost:9966/petclinic
+	  

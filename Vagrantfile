@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "sls-demo"
 
   config.vm.network "forwarded_port", guest: 9966, host: 9966
 
@@ -24,6 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      chef.add_recipe "petclinic"
      
      chef.json = { 
+      "base_folder" => "/vagrant",
       "java" => {
         "install_flavor" => "openjdk",
         "jdk_version" => "7",

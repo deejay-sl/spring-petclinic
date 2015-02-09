@@ -1,6 +1,6 @@
 bash "build-source" do 
 
-	cwd "/vagrant"
+	cwd "#{node[:base_folder]}"
 	code <<-EOH
 		mvn -f pom_provision_demo.xml clean
 		mvn -f pom_provision_demo.xml compile
@@ -10,3 +10,4 @@ bash "build-source" do
 	action :run
 
 end
+
