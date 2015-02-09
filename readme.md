@@ -247,7 +247,7 @@ Before you can run a virtual machine on your computer, you will need an image of
 
 From a local source (USB stick or CD), a Vagrant box can be added to your local library of boxes with `vagrant box add`:
 
-		vagrant box add /path/to/sls-demo.box --name sls-demo
+		vagrant box add usbstick/sls-demo.box --name sls-demo
 
 Note that whatever 'name' is given for the box in your library, that is the name that is used in a Vagrantfile to spin up an instance of that box.
 

@@ -15,8 +15,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ["modifyvm", :id, "--cpus", 4]
   end
 
-  # config.vm.synced_folder "../data", "/vagrant_data"
-
   config.vm.provision "shell",
       inline: "/vagrant/./provision.sh"
 
