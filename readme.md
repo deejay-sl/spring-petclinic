@@ -284,7 +284,6 @@ Next, let's provision the box with the `shell` provisioner, essentially `provisi
 Now, `vagrant ssh` into the VM, switch to root user, and look around:
 
 	vagrant ssh
-	sudo -i
 	cd /vagrant
 
 `/vagrant` is a default shared folder that Vagrant provides so we can access the project root folder (the root folder with the Vagrantfile) on the host machine from within the VM. This is what allows us to develop code on our host machine while executing it within the VM.
@@ -298,6 +297,10 @@ To test, visit:
 	http://localhost:9966/petclinic/
 
 You can see how, with a VM, we can execute code in a standard environment, and with the use of shared folders, write code on our host platforms, whether that's Windows, Linux, or Mac. This helps to alleviate the pain point of having different development environments within a development team.
+
+### Clear 
+
+	vagrant destroy
 
 ### Demo Run #2: Chef Solo
 
@@ -319,7 +322,6 @@ Without any extra arguments, Vagrant will perform its default behavior and run a
 Everything is done! We only need to 'ssh' into the VM and start the application server:
 
 	  vagrant ssh
-	  sudo -i
 	  cd /vagrant
 	  mvn -f pom_provision_demo.xml tomcat7:run
 
