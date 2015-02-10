@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "chef_solo" do |chef|
      
-     chef.add_recipe "java"
+     chef.add_recipe "java::default"
      chef.add_recipe "maven"
      chef.add_recipe "petclinic"
      

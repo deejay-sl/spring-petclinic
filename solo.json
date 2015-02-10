@@ -1,6 +1,7 @@
 { 
   "base_folder": "/vagrant",
-  "log_level": "debug",
+  "tomcat_user_username": "tomcat_dev",
+  "tomcat_user_password": "t0mc@t",
   "java": {
     "install_flavor": "oracle",
     "jdk_version": "7",
