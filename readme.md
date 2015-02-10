@@ -227,7 +227,7 @@ Downloads and instructions can be found at: https://www.vagrantup.com/
 
 ### Getting started
 
-** Note: you will need to have full administrative privileges on the host machine. **
+**Note: you will need to have full administrative privileges on the host machine.**
 
 #### Get the source code
 
@@ -250,16 +250,29 @@ From a local source (USB stick or CD), a Vagrant box can be added to your local 
 		vagrant box add usbstick/sls-demo.box --name sls-demo
 
 Note that whatever 'name' is given for the box in your library, that is the name that is used in a Vagrantfile to spin up an instance of that box.
-
-For remote sourcing, as from the VirtualBox server, `vagrant box add` works like this:
-
-		vagrant box add ubuntu/trusty64
 		
-** Note: On Windows machines, _provision.sh_ may have problems running due to _^M_ line endings. _dos2unix_ may be used to convert the file: **
-
-	  dos2unix provision.sh
-
 ### Demo Run #1: Shell script
+
+#### Notes to Windows users
+
+1. In this demo, we will be executing our shell script, provision.sh. On Windows machines, this script may have problems running due to _^M_ line endings. _dos2unix_ may be used to convert the file:
+
+	  	dos2unix provision.sh
+
+2. You may see messages like this when starting up a VM:
+
+		default: Warning: Connection timeout. Retrying...
+		...
+		...
+		default: Warning: Remote connection disconnect. Retrying...
+		...
+		...
+
+	This should resolve itself with messages stating that a new keypair has been generated and the public key has been installed on the guest.
+
+3. You may see messages about symlinks not being created properly from a `tar` command on the first demo (shell script). We've seen these before on Windows hosts with the demo running correctly (i.e. go ahead and try), but please let us know if anything breaks.
+
+#### Moving on..
 
 First, let's get the VM running and see what's involved:
 
