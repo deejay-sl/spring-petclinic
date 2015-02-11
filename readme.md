@@ -286,7 +286,7 @@ Notice what is output while the VM is being started and configured. Briefly:
 * Forwarding ports
 	* 9966
 	* 22
-* Mounting shared folders
+* Mounting shared folders (read/write)
 	* /vagrant
 	* /tmp/vagrant-chef-3/chef-solo-1/cookbooks
 
