@@ -5,7 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "sls-demo"
+  config.vm.box = "ubuntu/trusty64"
 
   config.vm.network "forwarded_port", guest: 9966, host: 9966
 
@@ -18,13 +18,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell",
       inline: "/vagrant/./provision.sh"
 
-  config.vm.provision "chef_solo" do |chef|
-     
-     chef.add_recipe "java::default"
-     chef.add_recipe "maven"
-     #chef.add_recipe "petclinic"
-     
-     chef.json.merge!(JSON.parse(File.read("solo.json")))
-  end
+#  config.vm.provision "chef_solo" do |chef|
+
+#     chef.add_recipe "java::default"
+#     chef.add_recipe "maven"
+#     #chef.add_recipe "petclinic"
+
+#     chef.json.merge!(JSON.parse(File.read("solo.json")))
+#  end
 
 end
