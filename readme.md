@@ -238,7 +238,11 @@ While the Vagrant box is downloading, we can move on:
 	  
 #### Copy resources from a USB stick (provided at demo) into /spring-petclinic/usbstick
 
-**Note: It is important that this folder is exactly as shown. The demo requires the files to exist at this path.**	  
+**Note: It is important that this folder is exactly as shown. The demo requires the files to exist at this path.**
+
+* Download Linux x64 Java 7_75 `tar.gz` <http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html#jdk-7u75-oth-JPR> to `spring-petclinic/usbstick/`
+* Download <http://mirror.nexcess.net/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz> to `spring-petclinic/usbstick/`
+
 #### Get a Vagrant "box"
 
 **Note: Downloading the Vagrant box might take some time, so it's best to download this file early.**
