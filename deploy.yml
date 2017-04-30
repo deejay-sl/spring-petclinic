@@ -1,0 +1,17 @@
+---
+- hosts: DevOps
+  become: yes
+  become_user: root
+  vars:
+    http_port: 80
+
+  tasks:
+    - name: Install Java
+      yum: name=java-1.7.0-openjdk-devel state=present
+    - name: Install Tomcat 7
+      yum: name=tomcat state=present
+    - name: Enable and Start Tomcat
+      systemd: name=tomcat enabled=yes state=started
+    - copy: src=/var/lib/jenkins/workspace/petclinic/target/petclinic.war dest=/var/lib/tomcat/webapps
+      environment:
+        JAVA_HOME: /sr/lib/jvm/java-7-openjdk-amd64
