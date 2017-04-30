@@ -12,6 +12,6 @@
       yum: name=tomcat state=present
     - name: Enable and Start Tomcat
       systemd: name=tomcat enabled=yes state=started
-    - copy: src=/var/lib/jenkins/workspace/petclinic/target/petclinic.war dest=/var/lib/tomcat/webapps
+    - copy: src=./target/petclinic.war dest=/var/lib/tomcat/webapps
       environment:
         JAVA_HOME: /sr/lib/jvm/java-7-openjdk-amd64
