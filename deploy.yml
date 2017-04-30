@@ -12,6 +12,8 @@
       yum: name=tomcat state=present
     - name: Enable and Start Tomcat
       systemd: name=tomcat enabled=yes state=started
+    - name: Allow 8080/tcp through firewall
+      firewalld: state=enabled port=8080/tcp zone=public permanent=yes immediate=yes
     - copy: src=./target/petclinic.war dest=/var/lib/tomcat/webapps
       environment:
         JAVA_HOME: /sr/lib/jvm/java-7-openjdk-amd64
