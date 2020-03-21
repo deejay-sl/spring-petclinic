@@ -41,7 +41,7 @@
 		<aspectj.version>1.8.2</aspectj.version>
 
 		<!-- Logging -->
-		<logback.version>1.1.2</logback.version>
+		<logback.version>1.1.11</logback.version>
 		<slf4j.version>1.7.7</slf4j.version>
 
 		<!-- RSS -->
@@ -381,7 +381,7 @@
 				<version>3.0</version>
 				<configuration>
 					<compilerArguments>
-						<Xlint />
+						<Xlint/>
 					</compilerArguments>
 					<verbose>true</verbose>
 					<source>${java.version}</source>
