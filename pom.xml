@@ -27,10 +27,10 @@
 		<jaxb-impl.version>2.2.7</jaxb-impl.version>
 
 		<!-- Hibernate / JPA -->
-		<hibernate.version>4.3.6.Final</hibernate.version>
+		<hibernate.version>5.3.18.Final</hibernate.version>
 
 		<!-- Bean validation -->
-		<hibernate-validator.version>4.3.1.Final</hibernate-validator.version>
+		<hibernate-validator.version>6.0.19.Final</hibernate-validator.version>
 
 		<!-- Database access -->
 		<tomcat-jdbc.version>7.0.42</tomcat-jdbc.version>
@@ -59,9 +59,9 @@
 
 
 		<!-- Web dependencies -->
-		<webjars-bootstrap.version>2.3.0</webjars-bootstrap.version>
+		<webjars-bootstrap.version>4.5.0</webjars-bootstrap.version>
 		<webjars-jquery-ui.version>1.10.3</webjars-jquery-ui.version>
-		<webjars-jquery.version>2.0.3-1</webjars-jquery.version>
+		<webjars-jquery.version>3.5.0</webjars-jquery.version>
 		<dandelion.version>0.10.1</dandelion.version>
 
 		<mysql.version>5.1.22</mysql.version>
@@ -381,7 +381,7 @@
 				<version>3.0</version>
 				<configuration>
 					<compilerArguments>
-						<Xlint />
+						<Xlint/>
 					</compilerArguments>
 					<verbose>true</verbose>
 					<source>${java.version}</source>
